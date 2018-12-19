@@ -31,7 +31,7 @@ def readTrainingData():
            
         print('Finished reading in training data.')
         
-    X_train = np.array(images) # shape: (8036, 160, 320, 3)
-    y_train = np.array(steeringAngles) # shape: (8036,)
+    X_train = np.array(images) # shape: (24108, 160, 320, 3)
+    y_train = np.array(steeringAngles) # shape: (24108,)
     
     return X_train, y_train
