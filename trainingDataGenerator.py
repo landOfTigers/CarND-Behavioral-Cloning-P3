@@ -25,8 +25,5 @@ def trainingDataGenerator(samples, batchSize):
 
             # flip images
             X_train, y_train = flipTrainingData(np.array(images), np.array(steeringAngles))
-#             X_train = np.array(images)
-#             y_train = np.array(angles)
-            # TODO: why shuffle again?
-#             yield sklearn.utils.shuffle(X_train, y_train)
+
             yield X_train, y_train
