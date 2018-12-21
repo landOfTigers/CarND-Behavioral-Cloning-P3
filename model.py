@@ -12,7 +12,6 @@ normalizedInput = Lambda(lambda x: x/255.0-0.5)(croppedInput)
 resizedInput = Lambda(lambda image: K.tf.image.resize_images(image, (128, 128)))(normalizedInput)
 baseModel = MobileNet(include_top=False, weights='imagenet', input_shape=(128,128,3))(resizedInput)
 pooling = GlobalAveragePooling2D()(baseModel)
-# new_layer = Dense(512)(out)#, activation='relu')(pooling)
 predictions = Dense(1)(pooling)
 
 model = Model(inputs=rawInput, outputs=predictions)
@@ -30,6 +29,6 @@ from trainingDataGenerator import trainingDataGenerator
 trainGenerator = trainingDataGenerator(trainSamples, batchSize)
 validationGenerator = trainingDataGenerator(validationSamples, batchSize)
 
-model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=1)
+model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=2)
 
 model.save('model.h5')
