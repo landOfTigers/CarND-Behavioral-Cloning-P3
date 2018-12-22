@@ -15,10 +15,10 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
+[image2]: ./writeup_files/backwards_center.jpg "Backwards Center"
+[image3]: ./writeup_files/recovery1.jpg "Recovery 1"
+[image4]: ./writeup_files/recovery2.jpg "Recovery 2"
+[image5]: ./writeup_files/recovery3.jpg "Recovery 3"
 [image6]: ./examples/placeholder_small.png "Normal Image"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
