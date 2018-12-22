@@ -13,4 +13,5 @@ def readFromLogFile(fileName):
 def createSamplesFromLog():
     samples = readFromLogFile('data/driving_log.csv')
     samples.extend(readFromLogFile('data/driving_log_backwards.csv'))
+    samples.extend(readFromLogFile('data/driving_log_recovery.csv'))
     return train_test_split(samples, test_size=0.2, shuffle=True)
