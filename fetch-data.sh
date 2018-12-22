@@ -18,10 +18,10 @@ find IMG/ -type f | wc -l # print number of images before
 mv backwards/IMG/* IMG/
 find IMG/ -type f | wc -l # print number of images after
 rm -rf backwards
-mv recovery/driving_log.csv driving_log_recovery.csv
+mv recovery2/driving_log.csv driving_log_recovery.csv
 find IMG/ -type f | wc -l # print number of images before
-mv recovery/IMG/* IMG/
+mv recovery2/IMG/* IMG/
 find IMG/ -type f | wc -l # print number of images after
-rm -rf recovery
+rm -rf recovery2
 
 cd ..
