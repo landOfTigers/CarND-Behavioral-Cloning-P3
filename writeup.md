@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 [image3]: ./writeup_files/recovery1.jpg "Recovery 1"
 [image4]: ./writeup_files/recovery2.jpg "Recovery 2"
 [image5]: ./writeup_files/recovery3.jpg "Recovery 3"
-[image6]: ./examples/placeholder_small.png "Normal Image"
+[image6]: ./writeup_files/flipped.png "Flipped"
 [image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
