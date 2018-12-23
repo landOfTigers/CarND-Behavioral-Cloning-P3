@@ -50,19 +50,24 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model consists of the Keras MobileNet with the last fully-connected layer removed and replaced by a fully connected layer with a single output (model.py lines 13 onwards). The parameter "pooling" is set to "avg" to retain the average pooling layer of the original network. There would have been the possibility to set the dropout rate via a parameter, however, this was not necessary, as the model was not overfitting the training data.
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The input images are cropped, normalized, and resized using Keras cropping and lambda layers (model.py line 10-13). 
+
+Here is an overview of the MobileNet architecture from [this paper](https://arxiv.org/pdf/1704.04861v1.pdf):
+![alt text][image1]
+
+This network architecture uses convolution layers with appropriate filter sizes, and, as we can read in the paper, each convolutional layer contains relu sublayers to introduce nonlinearity into the model.
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
+The model was trained and validated on different data sets to ensure that the model was not overfitting using the function "createSamplesFromLog" which is called from model.py, line 24. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+With this, there was no significant overfitting when using the original architecture, so the model did not need to be enhanced with additional dropout layers. A curious attempt to set the MobileNet dropout parameter to 0.001 had negative effects on the model's performance and was therefore dismissed.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 17).
 
 #### 4. Appropriate training data
 
@@ -94,7 +99,23 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![alt text][image1]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+input_1 (InputLayer)         (None, 160, 320, 3)       0
+_________________________________________________________________
+cropping2d_1 (Cropping2D)    (None, 65, 320, 3)        0
+_________________________________________________________________
+lambda_1 (Lambda)            (None, 65, 320, 3)        0
+_________________________________________________________________
+lambda_2 (Lambda)            (None, 128, 128, 3)       0
+_________________________________________________________________
+mobilenet_1.00_128 (Model)   (None, 1024)              3228864
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 1025
+=================================================================
+
+
 
 #### 3. Creation of the Training Set & Training Process
 
