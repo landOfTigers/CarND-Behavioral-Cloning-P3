@@ -89,6 +89,8 @@ I found that both, the Inception and ResNet models, created very large model fil
 
 Because these complex models felt like an overkill for the task at hand I decided to test one of the smaller and faster ImageNet models provided in Keras, and, after doing some research, decided to look into the MobilNet model. According to this [video](https://www.youtube.com/watch?v=OO4HD-1wRN8) MobileNets are lightweight deep CNNs that are smaller in size and faster in performance than most other popular models.
 
+To load the saved model that was trained with the Keras MobileNet implementaion, I had to provide a custom object scope (drive.py lines 122-125).
+
 I experimented with several fully connected layers at the ouput, however, found that the performance on the final model and data was best with only one fully connected layer, which resulted in a validation loss of around 0.024. There was no signifant overfitting problem, however, out of curiosity I still experimented with setting the dropout rate of the Keras model. As expected, it would not contribute to the overall performance.
 
 I found that three epochs were sufficient for training, as the model would always start slightly overfitting from the third epoch.
