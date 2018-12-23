@@ -137,7 +137,7 @@ After the collection process, I had 112,962 number of data points. I then prepro
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was three, as evidenced by the difference in training and validation loss, where the validation loss started slightly exceeding the training loss starting from the third epoch. Here is an example output from training with four epochs, where this becomes obvious:
-
+```
 Epoch 1/4  
 1883/1882 [==============================] - 502s - loss: 0.0828 - val_loss: 0.0244  
 Epoch 2/4  
@@ -146,6 +146,7 @@ Epoch 3/4
 1883/1882 [==============================] - 499s - loss: 0.0247 - val_loss: 0.0287  
 Epoch 4/4  
 1883/1882 [==============================] - 499s - loss: 0.0240 - val_loss: 0.0252
+```
 
 I used an adam optimizer so that manually training the learning rate wasn't necessary. For training I used a generator function called "trainingDataGenerator" with a batchSize parameter of eight, which resulted in an actual batch size of 24, because for each data point there were three images and each of them was additionally flipped, resulting in six training examples per data point.
 
