@@ -14,7 +14,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: ./writeup_files/mobileNetArch.png "MobileNet"
 [image2]: ./writeup_files/backwards_center.jpg "Backwards Center"
 [image3]: ./writeup_files/recovery1.jpg "Recovery 1"
 [image4]: ./writeup_files/recovery2.jpg "Recovery 2"
