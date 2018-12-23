@@ -71,7 +71,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road and driving the lap counter-clockwise.
 
 For details about how I created the training data, see the next section. 
 
@@ -79,26 +79,29 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to apply transfer learning on one of the models provided in Keras to experinece the power of the networks pretrained on the ImageNet.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
+My first step was to test the InceptionV3 and ResNet50 models from Keras. I thought these models might be appropriate because they were the winners of the 2014 and 2015 ImageNet competiions, with ResNet's accuracy exceeding that of a human.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
 
-To combat the overfitting, I modified the model so that ...
+I found that both, the Inception and ResNet models, created very large model files and especially the ResNet model took extremely long to train. The validation loss was around 0.07 after one epoch of training for both of these models and the models would start overfitting with the second epoch. 
 
-Then I ... 
+Because these complex models felt like an overkill for the task at hand I decided to test one of the smaller and faster ImageNet models provided in Keras, and, after doing some research, decided to look into the MobilNet model. According to this [video](https://www.youtube.com/watch?v=OO4HD-1wRN8) MobileNets are lightweight deep CNNs that are smaller in size and faster in performance than most other popular models.
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+I experimented with several fully connected layers at the ouput, however, found that the performance on the final model and data was best with only one fully connected layer, which resulted in a validation loss of around 0.024. There was no signifant overfitting problem, however, out of curiosity I still experimented with setting the dropout rate of the Keras model. As expected, it would not contribute to the overall performance.
+
+I found that 3 epochs were sufficient for training, as the model would usually start slightly overfitting from the third epoch.
+
+The final step was to run the simulator to see how well the car was driving around track one. In the earlier stages of the parameter tuning and data collection process, there were a few spots where the vehicle fell off the track. To improve the driving behavior in these cases, I tuned the correction factor applied to the left and right camera images to 0.02, provided each image in a flipped version, recorded a counter-clockwise lap to combat the drag to the left side of the lane and recorded some examples of recovery driving. The first set of recovery driving apparently included some bad driving behavior examples, which deteriorated the performances. This led me to record some better recovery examples.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 9-14) consisted of a MobileNet layer with a single fully connected layer at the output and the preprocesssing layers described above at the input.
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
+Here is a summary of the architecture:
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
@@ -114,8 +117,6 @@ mobilenet_1.00_128 (Model)   (None, 1024)              3228864
 _________________________________________________________________
 dense_1 (Dense)              (None, 1)                 1025
 =================================================================
-
-
 
 #### 3. Creation of the Training Set & Training Process
 
