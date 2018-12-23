@@ -10,11 +10,8 @@ rawInput = Input(shape=(160,320,3))
 croppedInput = Cropping2D(cropping=((70,25),(0,0)))(rawInput)
 normalizedInput = Lambda(lambda x: x/255.0-0.5)(croppedInput)
 resizedInput = Lambda(lambda image: K.tf.image.resize_images(image, (128, 128)))(normalizedInput)
-baseModel = MobileNet(include_top=False, weights='imagenet', input_shape=(128,128,3))(resizedInput)
-pooling = GlobalAveragePooling2D()(baseModel)
-dense1 = Dense(120)(pooling)
-dense2 = Dense(84)(dense1)
-predictions = Dense(1)(dense2)
+baseModel = MobileNet(include_top=False, weights='imagenet', pooling='avg', input_shape=(128,128,3))(resizedInput)
+predictions = Dense(1)(baseModel)
 
 model = Model(inputs=rawInput, outputs=predictions)
 model.compile(loss='mse', optimizer='adam')
@@ -31,6 +28,6 @@ from trainingDataGenerator import trainingDataGenerator
 trainGenerator = trainingDataGenerator(trainSamples, batchSize)
 validationGenerator = trainingDataGenerator(validationSamples, batchSize)
 
-model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=2)
+model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=4)
 
 model.save('model.h5')
