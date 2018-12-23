@@ -122,8 +122,8 @@ For center lane driving, I used the sample driving data provided through the wor
 
 I then recorded the vehicle recovering from the left and right sides of the road back to center so that the vehicle would learn to steer back to the center when it approaches the lane markings. These images show what a recovery looks like starting from the left side with the car dragging over to the center:
 
-![alt text][image3]
-![alt text][image4]
+![alt text][image3]  
+![alt text][image4]  
 ![alt text][image5]
 
 To augment the data sat, I also flipped images and angles thinking that this would lead to better generalizations. For example, here is an image and its flipped version:
