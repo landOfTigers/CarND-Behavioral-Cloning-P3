@@ -28,6 +28,6 @@ from trainingDataGenerator import trainingDataGenerator
 trainGenerator = trainingDataGenerator(trainSamples, batchSize)
 validationGenerator = trainingDataGenerator(validationSamples, batchSize)
 
-model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=4)
+model.fit_generator(trainGenerator, steps_per_epoch=len(trainSamples)/batchSize, validation_data=validationGenerator, validation_steps=len(validationSamples)/batchSize, epochs=3)
 
 model.save('model.h5')
