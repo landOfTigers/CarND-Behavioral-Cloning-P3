@@ -20,7 +20,6 @@ The goals / steps of this project are the following:
 [image4]: ./writeup_files/recovery2.jpg "Recovery 2"
 [image5]: ./writeup_files/recovery3.jpg "Recovery 3"
 [image6]: ./writeup_files/flipped.png "Flipped"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -102,21 +101,15 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 The final model architecture (model.py lines 9-14) consisted of a MobileNet layer with a single fully connected layer at the output and the preprocesssing layers described above at the input.
 
 Here is a summary of the architecture:
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_1 (InputLayer)         (None, 160, 320, 3)       0
-_________________________________________________________________
-cropping2d_1 (Cropping2D)    (None, 65, 320, 3)        0
-_________________________________________________________________
-lambda_1 (Lambda)            (None, 65, 320, 3)        0
-_________________________________________________________________
-lambda_2 (Lambda)            (None, 128, 128, 3)       0
-_________________________________________________________________
-mobilenet_1.00_128 (Model)   (None, 1024)              3228864
-_________________________________________________________________
-dense_1 (Dense)              (None, 1)                 1025
-=================================================================
+
+| Layer							| Output Shape			| Param #	| 
+|:-----------------------------:|:---------------------:|:---------:| 
+| input_1 (InputLayer)			| (None, 160, 320, 3)	| 0			|
+| cropping2d_1 (Cropping2D)		| (None, 65, 320, 3)	| 0			|
+| lambda_1 (Lambda)				| (None, 65, 320, 3)	| 0			|
+| lambda_2 (Lambda)				| (None, 128, 128, 3)	| 0			|
+| mobilenet_1.00_128 (Model)	| (None, 1024)			| 3228864	|
+| dense_1 (Dense)				| (None, 1)				| 1025		|
 
 #### 3. Creation of the Training Set & Training Process
 
@@ -135,7 +128,6 @@ Then I repeated this process on track two in order to get more data points.
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
 ![alt text][image6]
-![alt text][image7]
 
 Etc ....
 
